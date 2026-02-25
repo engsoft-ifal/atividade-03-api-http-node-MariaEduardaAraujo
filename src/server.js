@@ -11,15 +11,15 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify())
                 return
         }
-        if (req.method === "GET" && req.url === "/protocolos/ID"){
+        /*if (req.method === "GET" && req.url === "/protocolos/ID"){
 
         }
         if (req.method === "POST" && req.url === "/protocolos"){
 
-        }
+        }*/
         
-        req.writeHead(404)
-        req.end()
+        res.writeHead(404)
+        res.end(JSON.stringify({error: "Endpoint não encontrado"}))
 })
 
 server.listen(3000, () => {
