@@ -16,12 +16,10 @@ const server = http.createServer((req, res) => {
         if (req.method === "GET" && req.url.startsWith("/protocolos/")){
                 let url = req.url
                 let urlFormatada = url.split("/")
-                let conversao = parseInt(urlFormatada[2], 10)
+                let idConvertido = parseInt(urlFormatada[2], 10)
                 
                 for (let i = 0; i < protocolos.length; i++) {
-                        let idProtocolo = protocolos[i].id
-
-                        if (conversao == idProtocolo){
+                        if (idConvertido == protocolos[i].id){
                                 res.writeHead(200, {"Content-Type": "application/json"})
                                 res.end(JSON.stringify(protocolos[i]))
                                 return
@@ -45,6 +43,7 @@ const server = http.createServer((req, res) => {
                                 if (!nome || !tipo || !data){
                                         res.writeHead(422, {"Content-Type": "application/json"})
                                         res.end(JSON.stringify({erro: "Campos obrigatórios ausentes"}))
+                                        return
                                 }
                                 
                                 const novoProtocolo = {
@@ -62,6 +61,10 @@ const server = http.createServer((req, res) => {
                         }
                 })
                 return
+        }
+        else{
+                res.writeHead(404, {"Content-Type": "application/json"})
+                res.end(JSON.stringify({erro: "Endpoint não encontrado"}))  
         }
 })
 
