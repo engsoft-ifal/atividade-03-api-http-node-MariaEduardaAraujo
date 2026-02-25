@@ -13,22 +13,24 @@ const server = http.createServer((req, res) => {
                 res.end(JSON.stringify(protocolos))
                 return
         }
-        /*if (req.method === "GET" && req.url.startsWith("/protocolos/")){
-                let urlFormat = req.split("/")
-                let conversao = parseInt(urlFormat, 10)
-                if (conversao){
-                        for (let i = 0; i < protocolos.length; i++) {
-                                if (conversao == protocolos[i]){
-                                        res.writeHead(200, {"Content-Type": "application/json"})
-                                        res.end(protocolos[i])
-                                }else{
-                                        res.writeHead(404, {"Content-Type": "application/json"})
-                                        res.end(JSON.stringify({erro: "ID não encontrado"}))
-                                }
+        if (req.method === "GET" && req.url.startsWith("/protocolos/")){
+                let url = req.url
+                let urlFormatada = url.split("/")
+                let conversao = parseInt(urlFormatada[2], 10)
+                
+                for (let i = 0; i < protocolos.length; i++) {
+                        let idProtocolo = protocolos[i].id
+
+                        if (conversao == idProtocolo){
+                                res.writeHead(200, {"Content-Type": "application/json"})
+                                res.end(JSON.stringify(protocolos[i]))
+                                return
                         }
                 }
+                res.writeHead(404, {"Content-Type": "application/json"})
+                res.end(JSON.stringify({erro: "ID não encontrado"}))
                 
-        }*/
+        }
         if (req.method === "POST" && req.url === "/protocolos"){
                 let body = ""
                 req.on("data", chunk => {
