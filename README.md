@@ -46,16 +46,17 @@ Os dados deverão ser armazenados em memória (array).
 
 Edite esta seção antes de iniciar.
 
-Nome completo:
-Matrícula:
-Variação calculada:
+Nome completo: Maria Eduarda de Araújo Silva
 
-Cálculo da variação:
-Último dígito da matrícula % 4
+Matrícula: 2023007122
+
+Variação calculada: 2
+
+
+Cálculo da variação: Último dígito da matrícula % 4
 
 Exemplo:
-Se matrícula termina com 7:
-7 % 4 = 3
+Se matrícula termina com 7: 7 % 4 = 3
 
 ---
 
@@ -98,20 +99,21 @@ Campos obrigatórios:
 
 5. ENDPOINTS OBRIGATÓRIOS
 
-GET /health
+GET /health:
 Retornar JSON indicando que o serviço está ativo.
 
-GET /<seu-recurso>
+GET /seu-recurso:
 Retornar lista completa.
 
-GET /<seu-recurso>/:id
+GET /seu-recurso/:id:
 Retornar item específico por ID.
 Se não existir:
 
 * Status 404
 * JSON com mensagem de erro
 
-POST /<seu-recurso>
+POST /seu-recurso
+
 Deve:
 
 * Ler JSON do body
@@ -135,9 +137,13 @@ Mínimo de 5 commits.
 Mensagens devem ser descritivas.
 
 Exemplo:
+
 feat: implementa rota health
+
 feat: adiciona POST
+
 fix: corrige validação de campos
+
 refactor: organiza lógica
 
 ---
